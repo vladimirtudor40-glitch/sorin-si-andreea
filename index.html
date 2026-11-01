@@ -121,6 +121,16 @@
   .pyr-fill { transition: y 1.6s cubic-bezier(.2,.8,.2,1), height 1.6s cubic-bezier(.2,.8,.2,1); }
 
   .scroller { scrollbar-width: none; } .scroller::-webkit-scrollbar { display: none; }
+  html { -webkit-text-size-adjust: 100%; }
+  body { -webkit-tap-highlight-color: transparent; }
+  @media (hover: none) { .guest:hover { transform: none; } }
+  @media (max-width: 639px) {
+    /* crop the drawing around the Great Pyramid so it reads at phone size */
+    svg.hero-art { width: 175%; max-width: none; margin-left: -37.5%; }
+    .tab { padding: .5rem .7rem; font-size: .66rem; letter-spacing: .04em; }
+    .sketch > .os { display: none; }
+    .cartouche { width: 42px; height: 58px; }
+  }
   @media (prefers-reduced-motion: reduce) {
     *, *::before, *::after { animation: none !important; transition: none !important; }
     .draw { stroke-dashoffset: 0; } .fade-in { opacity: 1; }
@@ -144,7 +154,7 @@
       <span class="hidden md:inline label opacity-80">Planșa 00 · Scara 1:∞</span>
       <button id="themeBtn" class="tab !min-h-[40px] !px-3 inline-flex items-center gap-2" aria-label="Schimbă tema (zi / noapte)">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><circle cx="12" cy="12" r="4.5"/><path d="M12 2v2.5M12 19.5V22M2 12h2.5M19.5 12H22M4.9 4.9l1.8 1.8M17.3 17.3l1.8 1.8M4.9 19.1l1.8-1.8M17.3 6.7l1.8-1.8"/></svg>
-        <span>Temă</span>
+        <span class="hidden sm:inline">Temă</span>
       </button>
     </div>
   </nav>
@@ -182,7 +192,7 @@
       Cei dragi care ne vor fi alături în cea mai frumoasă zi
     </p>
 
-    <p class="mt-6 inline-flex items-center gap-2 mono text-[.78rem] sm:text-sm px-4 py-2 border border-line" style="color:var(--muted)">
+    <p class="mt-6 inline-flex items-center gap-2 mono text-[.66rem] sm:text-sm px-3 sm:px-4 py-2 border border-line max-w-full" style="color:var(--muted)">
       <span style="color:var(--faience)">❯</span>
       <span><span style="color:var(--lapis)">sorin</span>.<span style="color:var(--gold)">commit</span>(<span style="color:var(--faience)">"andreea"</span>, { forever: <span style="color:var(--lapis)">true</span> })</span><span class="caret" aria-hidden="true"></span>
     </p>
@@ -198,8 +208,8 @@
   </div>
 
   <!-- Blueprint drawing: Giza plateau, sun disk, soundwave horizon -->
-  <div class="relative mt-6 sm:mt-2 mx-auto max-w-7xl px-2 sm:px-8" aria-hidden="true">
-    <svg viewBox="0 0 1200 500" class="w-full h-auto" fill="none">
+  <div class="relative mt-6 sm:mt-2 mx-auto max-w-7xl px-0 sm:px-8 overflow-hidden" aria-hidden="true">
+    <svg viewBox="0 0 1200 500" class="hero-art w-full h-auto" fill="none">
       <defs>
         <pattern id="hatch" width="7" height="7" patternUnits="userSpaceOnUse" patternTransform="rotate(-35)">
           <path d="M0 0v7" stroke="var(--gold)" stroke-width=".8" opacity=".35"/>
@@ -345,7 +355,7 @@
   <section id="invitati" aria-labelledby="t3" class="mt-24 scroll-mt-6">
     <div class="sectionHead" data-n="03" data-k="Invitați" data-id="t3" data-title="Invitații"></div>
 
-    <div class="mt-10 sheet p-4 sm:p-5 sticky top-3 z-20 backdrop-blur-md" style="background:color-mix(in srgb, var(--surface) 90%, transparent)">
+    <div class="mt-10 sheet p-3 sm:p-5 md:sticky md:top-3 z-20 backdrop-blur-md" style="background:color-mix(in srgb, var(--surface) 90%, transparent)">
       <div class="flex flex-col md:flex-row gap-3 md:items-center">
         <label class="relative flex-1">
           <span class="sr-only">Caută invitat</span>
@@ -353,7 +363,7 @@
           <input id="search" type="search" placeholder="Caută după nume…" autocomplete="off"
             class="w-full min-h-[46px] border border-line pl-11 pr-4 text-base bg-transparent text-ink placeholder:text-muted focus:outline-none focus:border-gold" style="font-family:Jost">
         </label>
-        <div class="flex gap-2" role="group" aria-label="Filtru status">
+        <div class="grid grid-cols-3 md:flex gap-2" role="group" aria-label="Filtru status">
           <button class="tab" data-status="all" aria-pressed="true">Toți</button>
           <button class="tab" data-status="yes" aria-pressed="false">Confirmați</button>
           <button class="tab" data-status="no" aria-pressed="false">În așteptare</button>
@@ -371,7 +381,6 @@
   <div class="mx-auto max-w-7xl px-4 sm:px-8 py-14 grid gap-8 md:grid-cols-3 items-center">
     <div class="text-center md:text-left">
       <p class="font-display text-2xl tracking-[.18em] gold-text">SORIN &amp; ANDREEA</p>
-      <p class="mt-2 font-serif italic text-lg text-muted">Arhitectură · Cod · Muzică</p>
     </div>
     <svg viewBox="0 0 240 40" class="w-full max-w-[240px] mx-auto eq" aria-hidden="true" id="footWave" fill="var(--gold)" opacity=".6"></svg>
     <p class="mono text-xs text-muted text-center md:text-right leading-relaxed">
